@@ -1,0 +1,31 @@
+<div class="login">
+    <div class="Box">
+      <h2>Login </h2>
+      <br/>
+      <form [formGroup]="loginForm" (ngSubmit)="onMakeLogin()">
+        <mat-form-field appearance="outline" color="warn">
+          <mat-label>user email</mat-label>
+          <input matInput type="text" placeholder="Enter email" formControlName="user_email" />
+          <div *ngIf="loginForm.controls.user_email.invalid && loginForm.controls.user_email.touched">
+            <small>Please enter user Name</small>
+          </div>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" color="warn">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter password" formControlName="userPass" />
+          <div *ngIf="loginForm.controls.userPass.invalid && loginForm.controls.userPass.touched">
+            <mat-error *ngIf="loginForm.controls.userPass.errors?.minlength && loginForm.controls.userPass.touched">
+             <small> Password should be at least 4 characters.</small>
+            </mat-error>
+            <small>Please enter password</small>
+          </div>
+
+        </mat-form-field>
+        <div class="error-message">{{ errorMessage }}</div> 
+        <button mat-raised-button type="submit" [disabled]="loginForm.invalid" style="background-color: #4cbcdf; ">Login</button>
+      </form>
+      <p>Don't have a account? <a routerLink="/sign-up">Sign up</a></p>
+    </div>
+  </div>
+  

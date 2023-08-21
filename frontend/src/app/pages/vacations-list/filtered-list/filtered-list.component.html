@@ -1,0 +1,24 @@
+<h1>Following List</h1>
+<hr/>
+<div class="listPage">
+  <div class="card-container">
+
+    
+    <mat-card class="card" *ngFor="let item of displayedVacData">
+      <div class="image-container">
+        <img class="card-image" [src]="item.image_url" alt="Vacation Image">
+      </div>
+      <h3 class="card-title">{{ item.destination }}</h3>
+      <div class="time">
+        <h4 class="card-description date">{{ item.start_date }} - {{ item.end_date }}</h4>
+      </div>
+      <p class="card-description des">{{ item.description }}</p>
+      <p class="card-description price"><b>{{ item.price }}$</b></p>
+    </mat-card>
+  </div>
+<div class="pagination">
+  <button mat-button [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Previous</button>
+  <button mat-button *ngFor="let page of getPaginationRange()" [disabled]="currentPage === page"
+    (click)="onPageChange(page)">{{ page }}</button>
+  <button mat-button [disabled]="currentPage === getTotalPages()" (click)="onPageChange(currentPage + 1)">Next</button>
+</div>

@@ -1,0 +1,32 @@
+
+.menu {
+    margin-bottom: 20px;
+    margin: 10px;
+    color:  white;
+  }
+  
+  .menu hr {
+    border: none;
+    height: 1px;
+    background-color: #080808;
+    margin-bottom: 10px;
+  }
+  
+  .menu a {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #010101;
+    border: 1px solid white;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 80%;
+  }
+  
+  .menu a:hover {
+    background-color: #042a4d;
+    color: white;
+  }
+  

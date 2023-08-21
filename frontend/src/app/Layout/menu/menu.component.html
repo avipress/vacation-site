@@ -1,0 +1,8 @@
+<div class="menu">
+  <h1>Menu</h1>
+  <hr/>
+  <a routerLink="/list" class="menu-button">List</a>
+  <a routerLink="/addVac" class="menu-button" *ngIf="role_type === 'admin'">Add Vacation</a>
+  <a routerLink="/userList" class="menu-button" *ngIf="role_type === 'admin'">Users</a>
+  <a routerLink="/reports" class="menu-button" *ngIf="role_type === 'admin'">reports</a>
+</div>

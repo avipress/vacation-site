@@ -1,0 +1,20 @@
+
+<div *ngIf="this.loginService.userExist; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+           <div class="grid-container">
+    <app-header class="header" (logoutEvent)="logout()"></app-header>
+        <div class="main">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="aside"></div> <app-menu class="menu"></app-menu>
+        <app-footer class="footer"></app-footer>
+      </div>
+      
+
+</ng-template>
+<ng-template #elseBlock> 
+     <router-outlet></router-outlet>
+    </ng-template>
+ 
+ 
+

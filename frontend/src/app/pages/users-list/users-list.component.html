@@ -1,0 +1,16 @@
+<h1>users list</h1>
+
+<div class="card-container">
+  <mat-card class="card" *ngFor="let item of allVacData">
+    <mat-card-content class="card-body">
+      <h3 class="card-title">{{ item.user_name }} </h3>
+      <hr/>
+      <p class="card-description"><b>Email :</b> <br/>{{ item.user_email }}</p>
+      <p class="card-description"><b>user creation :</b><br/> {{ item.user_create }}</p>
+      <p class="card-description"><b>role : </b><br/>{{ item.role_type }}</p> 
+      <div class="btn"> 
+        <button mat-flat-button color="warn" *ngIf="item.role_type !== 'admin'" (click)="removeUser(item.id)">Remove</button>
+      </div> 
+    </mat-card-content>
+  </mat-card>
+</div>

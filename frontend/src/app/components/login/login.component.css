@@ -1,0 +1,56 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #bbe1f0;
+}
+
+.Box {
+  width: 350px;
+  padding: 20px;
+  border: 1px solid #232424;
+  border-radius: 5px;
+  background-color: #3c94e6;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #44c148;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="submit"]:disabled {
+  background-color: #837e7e;
+  padding: 10px;
+  cursor: not-allowed;
+}
+
+p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+a {
+  color:  rgb(4, 87, 87);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.error-message{
+margin: auto;
+  color: rgb(226, 111, 111);
+  margin-bottom: 5PX;
+}
+ 

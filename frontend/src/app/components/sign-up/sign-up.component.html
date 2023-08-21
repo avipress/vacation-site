@@ -1,0 +1,39 @@
+<div class="signup">
+  <div class="Box" >
+    <h2>Sign Up </h2>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
+      <mat-form-field appearance="outline" color="warn">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Enter your name" formControlName="name" />
+        <div *ngIf="signupForm.controls.name.invalid && signupForm.controls.name.touched">
+          <small>Please enter the name</small>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="warn">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter your email" formControlName="email" />
+        <div *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched">
+          <small>the email is already exist / not valid</small>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="warn">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter a password" formControlName="password" />   
+        <div *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched">
+        <mat-error *ngIf="signupForm.controls.password.errors?.minlength && signupForm.controls.password.touched">
+          <small> Password should be at least 4 characters.</small>  
+        </mat-error> 
+         <small>please enter password</small>
+        </div>
+      </mat-form-field>
+
+      <button mat-raised-button  type="submit" [disabled]="signupForm.invalid" style="background-color: #4cbcdf;
+      ;">Sign Up</button>
+    </form>
+
+    <p>Already have a account? <a routerLink="/login">Login</a></p>
+  </div>
+</div>

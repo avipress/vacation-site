@@ -1,0 +1,70 @@
+<h1>Add Vacation</h1>
+<div class="container">
+  <form [formGroup]="newVacationForm" (ngSubmit)="addVacation()" (click)="onUpload()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+    <div>
+      <mat-form-field>
+        <mat-label for="destination">Destination:</mat-label>
+        <input matInput type="text" id="destination" formControlName="destination">
+        <mat-error *ngIf="newVacationForm.controls.destination.invalid && newVacationForm.controls.destination.touched">
+          Please enter the destination.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="description">Description:</mat-label>
+        <textarea matInput id="description" formControlName="description"></textarea>
+        <mat-error *ngIf="newVacationForm.controls.description.invalid && newVacationForm.controls.description.touched">
+          Please enter the description.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label for="start_date">Start Date:</mat-label>
+      <input matInput type="date" formControlName="start_date">
+      <mat-error *ngIf="newVacationForm.get('start_date')!.hasError('required')">Please select a start date.</mat-error>
+      <mat-error *ngIf="newVacationForm.get('start_date')!.hasError('pastDate')">
+        {{ newVacationForm.get('start_date')!.getError('message') }}
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label for="end_date">End Date:</mat-label>
+      <input matInput type="date" formControlName="end_date">
+      <mat-error *ngIf="newVacationForm.get('end_date')!.hasError('required')">Please select an end date.</mat-error>
+      <mat-error *ngIf="newVacationForm.get('end_date')!.hasError('pastDate')">
+        {{ newVacationForm.get('end_date')!.getError('message') }}
+      </mat-error>
+    </mat-form-field>
+    
+     <!-- Create a custom-styled file upload button -->
+   <div class="form-field image-upload">
+    <label for="imageInput">Upload Image:</label>
+    <div class="image-upload-box" [style.background-image]="'url(' + imagePreview + ')'" (click)="triggerImageUpload()">
+      <p>Click to select an image or drag and drop an image here.</p>
+    </div>
+    <input type="file" id="imageInput"(change)="onImageSelected($event)">
+    <div *ngIf="selectedImage">
+      <p> {{ selectedImage.name }}</p>
+    </div>
+  </div>
+  <br/>
+  
+    <div>
+      <mat-form-field>
+        <mat-label for="price">Price:</mat-label>
+        <input matInput type="number" id="price" formControlName="price">
+        <mat-error *ngIf="newVacationForm.controls.price.invalid && newVacationForm.controls.price.touched">
+          <div *ngIf="newVacationForm.controls.price.errors?.invalidPrice">
+            Please enter a valid price (0 - 10000).
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <br/><br/>
+
+    <button type="submit" [disabled]="newVacationForm.invalid">Add Vacation</button>
+  </form>
+</div>

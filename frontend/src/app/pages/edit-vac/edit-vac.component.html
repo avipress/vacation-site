@@ -1,0 +1,68 @@
+<h2>Edit Vacation</h2>
+<div class="div container">
+<form [formGroup]="editVacationForm" (dragover)="onDragOver($event)" (click)="onUpload()"  (drop)="onDrop($event)">
+
+  <div class="form-field">
+    <mat-form-field>
+      <mat-label for="destination">Destination:</mat-label>
+      <input matInput type="text" id="destination" formControlName="destination">
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field>
+      <mat-label for="description">Description:</mat-label>
+      <textarea matInput id="description" formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field>
+      <mat-label for="start_date">Start Date:</mat-label>
+      <input matInput type="date" id="start_date" formControlName="start_date">
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field>
+      <mat-label for="end_date">End Date:</mat-label>
+      <input matInput type="date" id="end_date" formControlName="end_date">
+    </mat-form-field>
+  </div>
+
+  
+  <div class="form-field"> 
+    <p>Click ,drag or drop to upload an image</p>
+    <label for="imageInput" class="image-upload-box" 
+           [style.background-image]="'url(' + imagePreview + ')'"
+           (click)="triggerImageUpload()">
+      <input type="file" id="imageInput" (change)="handleImagePreview($event)" style="display: none;">
+     
+
+
+    </label>
+    <div *ngIf="selectedImage">
+      <p> {{ selectedImage.name }}</p>
+    </div>
+  </div>
+  
+  
+
+
+  <div class="form-field">
+    <mat-form-field>
+      <mat-label for="price">Price:</mat-label>
+      <input matInput type="number" id="price" formControlName="price">
+    </mat-form-field>
+    <div *ngIf="editVacationForm.controls.price.invalid && editVacationForm.controls.price.touched">
+      <mat-error>Please enter a valid price (0 - 10000).</mat-error>
+    </div>
+  </div>
+
+  <div class="form-buttons">
+    <button mat-flat-button color="accent" class="edit-button" (click)="editVacation()">Submit Changes</button>
+    <button mat-flat-button color="warn" class="cancel" (click)="cancelChanges()">Cancel</button>
+
+</div>
+</form>
+  </div>

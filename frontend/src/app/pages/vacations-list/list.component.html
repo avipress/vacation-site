@@ -1,0 +1,78 @@
+<h1>Vacation List</h1>
+<hr/>
+<div class="listPage">
+
+<div class="container">
+  
+  <button mat-button class="filter-button" [ngClass]="{ 'active': activeButton === 'showUpcoming' }" (click)="toggleFilter('showUpcoming')" [disabled]="activeButton !== '' && activeButton !== 'showUpcoming'">
+    {{ activeButton === 'showUpcoming' ? 'Show All Vacations' : 'Show Upcoming Vacations' }}
+  </button>
+  <button mat-button class="filter-button" [ngClass]="{ 'active': activeButton === 'showActive' }" (click)="toggleFilter('showActive')" [disabled]="activeButton !== '' && activeButton !== 'showActive'">
+    {{ activeButton === 'showActive' ? 'Show All Vacations' : 'Show Active Vacations' }}
+  </button>
+  <button mat-button class="filter-button"*ngIf="role_type === 'member'" [ngClass]="{ 'active': activeButton === 'showAll' }" (click)="toggleFilter('showAll')" [disabled]="activeButton !== '' && activeButton !== 'showAll'">
+    {{ activeButton === 'showAll' ?  'Show All Vacations':'Show Following Vacations' }}
+  </button>
+  
+</div>
+
+  <div class="card-container">
+    <!-- Iterate through the displayedVacData array and create a card for each item -->
+    <mat-card class="card" *ngFor="let item of displayedVacData">
+      <div class="image-container">
+        <!-- Display the vacation image -->
+<!-- Example in your Angular component's template -->
+
+        <!-- Replace the mat-slide-toggle with a regular button -->
+        <button class="follow-button" *ngIf="role_type === 'member'" (click)="followItem(item.id); updateFollow()">
+
+ <!-- Assuming you have a property "isFollowed" in the displayedVacData array -->
+ <mat-icon
+ [ngClass]="{
+   'heart-icon': getHeartIconColor(item),
+   'heart-empty-icon': !getHeartIconColor(item)
+ }"
+ (click)="followItem(item.id)"
+>
+ favorite
+</mat-icon>
+
+
+
+  <div class="totalfollowers">{{ item.followers_count }}</div>
+</button>
+
+      </div>
+      <img class="card-image"[src]="'http://localhost:4000/photos/' + item.image_url" alt="Vacation Image">
+
+      <!-- Display the destination as the card title -->
+      <h3 class="card-title">{{ item.destination }}</h3>
+      <div class="time">
+        <!-- Display the start and end date -->
+        <h4 class="card-description date"> check in: {{ item.start_date }} <br/> check out: {{ item.end_date }}</h4>
+      </div>
+      <!-- Display the description -->
+      <p class="card-description des">{{ item.description }}</p>
+      <!-- Display the price -->
+      <p class="card-description price"><b>{{ item.price }}$</b></p>
+
+      <!-- Display edit and remove buttons for admin users -->
+      <div class="button-container">
+        <button mat-flat-button color="accent" (click)="editVacation(item.id)" class="edit-button" *ngIf="role_type === 'admin'">
+          edit
+        </button>
+        <button mat-flat-button color="warn" (click)="removeVac(item.id)" class="remove-button" *ngIf="role_type === 'admin'">
+          Remove
+        </button>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Pagination buttons -->
+  <div class="pagination">
+    <button mat-button [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Previous</button>
+    <button mat-button *ngFor="let page of getPaginationRange()" [disabled]="currentPage === page"
+      (click)="onPageChange(page)">{{ page }}</button>
+    <button mat-button [disabled]="currentPage === getTotalPages()" (click)="onPageChange(currentPage + 1)">Next</button>
+  </div>
+</div>
